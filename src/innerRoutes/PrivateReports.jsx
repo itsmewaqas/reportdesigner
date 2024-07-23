@@ -38,8 +38,8 @@ function PrivateReports(props) {
   function AvatarRender(props) {
     const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
     return (
-      <div>
-        <dd className='avatarCricle' style={{ backgroundColor: cellValue[0] === 'A' ? "#34AA44" : "#009DE1" }}>{cellValue[0]}</dd> {cellValue}
+      <div className='avatarCricleMain'>
+        <dd className='avatarCricle' style={{ backgroundColor: cellValue[0] === 'A' ? "#34AA44" : "#009DE1" }}><i>{cellValue[0]}</i></dd> {cellValue}
       </div>
     )
   }
@@ -232,7 +232,7 @@ function PrivateReports(props) {
                   <h2>{item.reportName} <a href="javascript:;"><BiDotsVerticalRounded color='#A4A5A9' size={24} /></a></h2>
                   <img src={item.createdBy[0] === 'A' ? gridImg1 : gridImg2} alt="" />
                   <p><span style={{ backgroundColor: item.createdBy[0] === 'A' ? "#34AA44" : "#009DE1" }}>
-                    {item.createdBy[0]}</span> Modified:{item.modifiedOn}</p>
+                    {item.createdBy[0]}</span> <i>Modified:{item.modifiedOn}</i></p>
                 </div>
               )
             })}

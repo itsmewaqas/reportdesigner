@@ -294,7 +294,7 @@ footer p {
   height: 100%;
   box-sizing: border-box;
   background-color: #fff;
-  box-shadow: 4px 0 5px -2px #ECECEC;
+  box-shadow: 2px 0px 15px 0px rgba(99, 103, 107, 0.10);
   transition: all 0.4s;
   background-size: cover;
   position: fixed;
@@ -333,7 +333,7 @@ ul.sidebar li {
 }
 ul.sidebar li a {
   display: block;
-  padding: 15px 10px;
+  padding: 10px 10px;
   box-sizing: border-box;
   font-size: 14px;
   line-height: 18px;
@@ -349,9 +349,9 @@ ul.sidebar li a dd {
   top: 20px;
 }
 ul.sidebar li img {
-  vertical-align: middle;
+  vertical-align: text-bottom;
   position: relative;
-  top: 0px;
+  top: 5px;
   left: 5px;
 }
 ul.sidebar li ul {
@@ -396,6 +396,7 @@ ul.sidebar li:hover ul {
   float: left;
   min-height: 100vh;
   background-color: #fff;
+  box-shadow: 2px 0px 15px 0px rgba(99, 103, 107, 0.10);
   background-size: cover;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -689,16 +690,29 @@ dd {
 .avatarBox{
   display: block;
 }
+.avatarCricleMain{
+  justify-content: start;
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+}
 .avatarCricle{
-  display: inline;
-  padding: 5px 10px;
+  padding: 0px;
   border-radius: 50%;
   box-sizing: border-box;
   text-align: center;
   text-transform: uppercase;
-  vertical-align: middle;
+  vertical-align: text-top;
   color: #fff;
   margin-right: 10px;
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+}
+.avatarCricle i{
+  font-style: normal;
+  top: -5px;
+  position: relative;
 }
 .searchMenu{
   position: absolute;
@@ -730,12 +744,18 @@ dd {
   display: block;
   padding: 5px 15px;
   box-sizing: border-box;
+  cursor: pointer;
   font-size: 14px;
   color: #28303F;
   font-family: "CircularStd-Light";
   font-weight: 600;
   background-color: #DAEFFF;
   border-radius: 15px;
+  text-decoration: none;
+}
+.searchMenu ul.list1 li a.active{ 
+  background-color: #0078D4;
+  color: #fff;
 }
 .searchMenu h1{
   clear: both;
@@ -838,8 +858,16 @@ dd {
   width: 100%;
 }
 .gridBox p{
-  display: inline-block;
+  justify-content: start;
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  margin: 0px;
+  padding: 10px 0px;
+}
+.gridBox p i{ 
   color: #60636A;
+  font-style: normal;
   font-size: 12px;
   line-height: 14px;
   padding: 5px 0px;
@@ -849,16 +877,17 @@ dd {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 172px;
 }
 .gridBox p span{
-  display: inline-block;
   color: #fff;
-  padding: 5px 10px;
+  padding: 6px 0px 0px;
+  width: 30px;
+  height: 30px;
   font-size: 11px;
   border-radius: 50%;
   box-sizing: border-box;
-  margin-right: 2px;
+  margin-right: 5px;
   text-align: center;
   text-transform: uppercase;
   vertical-align: middle;
@@ -920,48 +949,99 @@ ul.colorList li svg{
   font-weight: 600;
   font-size: 18px !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* #firstDataTable .ag-selection-checkbox{
-  position: relative;
+ul.reportCatList{
+  background-color: #F6F9FF;
+  min-height: 100%;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: block;
 }
-#firstDataTable .ag-row-hover
-.ag-selection-checkbox::before{
- display: none;
-} 
-#firstDataTable .ag-selection-checkbox::before{
-  background: url('../images/checkboxHover.svg') left center no-repeat;
-  width: 15px;
-  height: 15px;
-  content: '';
+ul.reportCatList li{
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  height: 38px;
+}
+ul.reportCatList li a{
+  display: block;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #60636A;
+  cursor: pointer;
+  text-decoration: none;
+  border: #F6F9FF solid 1px;
+}
+ul.reportCatList li a.active{
+  background-color: #fff;
+  border: #ECECEC solid 1px;
+}
+table.reportSearchTable{
+  width: 100%;
+}
+table.reportSearchTable thead tr th{
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px 0px;
+  color: #000;
+  font-family: "CircularStd-Medium";
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+table.reportSearchTable tbody tr td{
+  font-size: 14px;
+  line-height: 18px;
+  padding: 5px 0px;
+  color: #60636A;
+  font-family: "CircularStd-Light";
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+table.reportSearchTable tbody tr td button{
+  background-color: transparent;
+  border: none;
+  margin-right: 2.5px;
+}
+table.reportSearchTable tbody tr td ul{
+  display: block;
+  list-style: none;
+  margin: 0px;
+  background-color: #F5F6F7;
+  padding: 15px;
+  width: 100px;
   position: absolute;
-  left: 0px;
-  top: 13px;
-  z-index: 1;
-} 
-#firstDataTable .ag-row-selected
-.ag-selection-checkbox::before{
-  display: none;
-} */
-
-
+  border-radius: 8px;
+}
+table.reportSearchTable tbody tr td ul::before{
+  background: url('../images/menuarrow.png') no-repeat;
+  content: '';
+  left: 24px;
+  top: -7px;
+  width:13px;
+  height: 11px;
+  position: absolute;
+}
+table.reportSearchTable tbody tr td ul li{
+  display: block;
+  padding: 0px;
+  text-align: left;
+  margin: 0px;
+}
+table.reportSearchTable tbody tr td ul li a{
+  display: block;
+  padding: 5px 0px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #60636A;
+  margin: 0px;
+  cursor: pointer;
+}
+table.reportSearchTable tbody tr td ul li a svg{
+  vertical-align: middle;
+  margin-right: 2.5px;
+}
 
 
 

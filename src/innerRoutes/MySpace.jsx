@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { SimpleButton, OutlineButton, FilledButton, ModeViewButton } from '../sharedComponents/ButtonComponents';
 import CreateFolder from '../sharedComponents/CreateFolder';
+import CreateReport from '../sharedComponents/CreateReport';
 import { BiSolidFolder, BiDotsVerticalRounded } from "react-icons/bi";
 import showChartIcon from '../assets/images/showChartIcon.svg';
 import addNewIcon from '../assets/images/addNewIcon.svg';
@@ -20,11 +21,11 @@ import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 
-
 function MySpace(props) {
 
   const [modeCtrl, setModeCtrl] = useState(false);
   const [folderCreate, setFolderCreate] = useState(false);
+  const [reportCreate, setReportCreate] = useState(false);
 
   function FolderRender(props) {
     const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
@@ -38,11 +39,21 @@ function MySpace(props) {
   function AvatarRender(props) {
     const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
     return (
-      <div>
-        <dd className='avatarCricle' style={{ backgroundColor: cellValue[0] === 'A' ? "#34AA44" : "#009DE1" }}>{cellValue[0]}</dd> {cellValue}
+      <div className='avatarCricleMain'>
+        <dd className='avatarCricle' style={{ backgroundColor: cellValue[0] === 'A' ? "#34AA44" : "#009DE1" }}><i>{cellValue[0]}</i></dd> {cellValue}
       </div>
     )
   }
+
+  // function ShowFolderName(props) {
+  //   const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
+  //   return (
+  //     <>
+  //       <div className='myDIV'>sdasdasd</div>
+  //       <div className='hide'>show</div>
+  //     </>
+  //   )
+  // }
 
   // AgGrid data
   const [rowData, setRowData] = useState([
@@ -51,6 +62,7 @@ function MySpace(props) {
       description: "How many sales person.",
       folder: "Public Report 1",
       createdBy: "Alber Khan",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
     {
@@ -58,6 +70,7 @@ function MySpace(props) {
       description: "How many sales person we have ...",
       folder: "Public Report 2",
       createdBy: "Rija Shakir",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
     {
@@ -65,6 +78,7 @@ function MySpace(props) {
       description: "How many sales person we have ...",
       folder: "Public Report 3",
       createdBy: "Alber Khan",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
     {
@@ -72,6 +86,7 @@ function MySpace(props) {
       description: "How many sales person.",
       folder: "Public Report 4",
       createdBy: "Waseem Khan",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
     {
@@ -79,6 +94,7 @@ function MySpace(props) {
       description: "How many sales person we have ...",
       folder: "Public Report 5",
       createdBy: "Alber Khan",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
     {
@@ -86,6 +102,7 @@ function MySpace(props) {
       description: "How many sales person we have ...",
       folder: "Public Report 6",
       createdBy: "junaid Khan",
+      location: 'Public Report',
       modifiedOn: "28/2-2024 - 2:00am"
     },
   ]);
@@ -106,6 +123,13 @@ function MySpace(props) {
     { field: "description", headerName: "Description" },
     { field: "folder", headerName: "Folder", cellRenderer: FolderRender },
     { field: "createdBy", headerName: "Created By", cellRenderer: AvatarRender },
+    { field: "location", headerName: "Location", 
+      // tooltipComponentParams: { color: "#000" },
+      // tooltipField: "location",
+      tooltipValueGetter: (p) =>
+        "" + p.value,
+      headerTooltip: "",
+     },
     { field: "modifiedOn", headerName: "Modified On" }
   ]);
 
@@ -134,10 +158,11 @@ function MySpace(props) {
   return (
     <div>
       {folderCreate && <CreateFolder folderCreate={folderCreate} setFolderCreate={setFolderCreate} />}
+      {reportCreate && <CreateReport reportCreate={reportCreate} setReportCreate={setReportCreate} />}
       <div className='filterRow'>
         <FilledButton
           buttonText="Create New Report"
-          buttonClick={() => console.log('click')}
+          buttonClick={() => setReportCreate(true)}
           disabled={false}
           buttonIcon={createNewReportIcon}
         />
@@ -215,6 +240,8 @@ function MySpace(props) {
               suppressRowClickSelection={true}
               rowSelection={'multiple'}
               defaultColDef={defaultColDef}
+              tooltipShowDelay={0}
+              tooltipHideDelay={2000}
               onRowSelected={onRowSelected}
               pagination={true}
               paginationPageSize={6}
@@ -232,7 +259,7 @@ function MySpace(props) {
                   <h2>{item.reportName} <a href="javascript:;"><BiDotsVerticalRounded color='#A4A5A9' size={24} /></a></h2>
                   <img src={item.createdBy[0] === 'A' ? gridImg1 : gridImg2} alt="" />
                   <p><span style={{ backgroundColor: item.createdBy[0] === 'A' ? "#34AA44" : "#009DE1" }}>
-                    {item.createdBy[0]}</span> Modified:{item.modifiedOn}</p>
+                    {item.createdBy[0]}</span> <i>Modified:{item.modifiedOn}</i></p>
                 </div>
               )
             })}
