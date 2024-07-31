@@ -37,10 +37,11 @@ function Routers(props) {
     <div>
       <Routes>
         {loginDetail.isAuth == false ?
-          <Route path="/"
-            // element={<OuterDashboard /> 
-            element={<Navigate to="/OuterDashboard" />}>
-            <Route exact path="/" element={<Login />} />
+          <Route path="/" element={<OuterDashboard />}>
+            <Route exact path="/" 
+            //element={<Login />} 
+            element={<Navigate to="/Login" />}
+            />
             <Route path="*" element={<NoMatch />} />
           </Route>
           :
@@ -50,7 +51,7 @@ function Routers(props) {
             <Route path="PrivateReports" element={<PrivateReports />} />
             <Route path="PublicReports" element={<PublicReports />} />
             <Route path="Favourites" element={<Favourites />} />
-
+            
             <Route path="Users" element={<Users />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
