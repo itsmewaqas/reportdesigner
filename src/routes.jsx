@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Routes,
   useLocation,
-  Route,
-  Navigate
+  Route
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,12 +36,10 @@ function Routers(props) {
     <div>
       <Routes>
         {loginDetail.isAuth == false ?
-          <>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/OuterDashboard" element={<OuterDashboard />} />
+          <Route path="/" element={<OuterDashboard />}>
+            <Route exact path="/" element={<Navigate to="/Login" />} />
             <Route path="*" element={<NoMatch />} />
-          </>
+          </Route>
           :
           <Route path="/" element={<InnerDashboard />}>
             <Route exact path="/" element={<MySpace />} />
@@ -50,7 +47,7 @@ function Routers(props) {
             <Route path="PrivateReports" element={<PrivateReports />} />
             <Route path="PublicReports" element={<PublicReports />} />
             <Route path="Favourites" element={<Favourites />} />
-
+            
             <Route path="Users" element={<Users />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
