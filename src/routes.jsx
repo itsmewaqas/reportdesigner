@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   Routes,
   useLocation,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -36,7 +37,9 @@ function Routers(props) {
     <div>
       <Routes>
         {loginDetail.isAuth == false ?
-          <Route path="/" element={<OuterDashboard />}>
+          <Route path="/"
+            // element={<OuterDashboard /> 
+            element={<Navigate to="/OuterDashboard" />}>
             <Route exact path="/" element={<Login />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
@@ -47,7 +50,7 @@ function Routers(props) {
             <Route path="PrivateReports" element={<PrivateReports />} />
             <Route path="PublicReports" element={<PublicReports />} />
             <Route path="Favourites" element={<Favourites />} />
-            
+
             <Route path="Users" element={<Users />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
