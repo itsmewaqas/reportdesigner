@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
-  BrowserRouter
+  BrowserRouter,
+  HashRouter
 } from "react-router-dom";
 import Routers from './routes';
 import './assets/css/styles.css';
@@ -11,9 +12,9 @@ function App() {
 
   return (
     <div>
-       <BrowserRouter>
-          <Routers />
-        </BrowserRouter>
+       <HashRouter basename={'/'}>
+          <Routers  />
+        </HashRouter>
     </div>
   )
 }
