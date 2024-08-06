@@ -4,27 +4,13 @@ import { selectPermission } from '../redux/reducer/menuSlice';
 import icon1 from '../assets/images/menuIcon1.svg';
 import icon2 from '../assets/images/menuIcon2.svg';
 import icon3 from '../assets/images/menuIcon3.svg';
+import menuData from '../redux/reducer/menuData';
 
 function TopMenu(props) {
 
     const dispatch = useDispatch();
 
-    const [selectTitle, setselectTitle] = useState("Home");
-
-    const permissionMenu = [
-        {
-            id: 0,
-            title: 'Home',
-        },
-        {
-            id: 1,
-            title: 'Visualization',
-        },
-        {
-            id: 2,
-            title: 'Organization',
-        },
-    ]
+    const [selectTitle, setSelectTitle] = useState("Home");
 
     const renderMenuIcon = (icon) => {
         switch (icon) {
@@ -40,13 +26,13 @@ function TopMenu(props) {
     }
 
     const getPermission = (item) => {
-        setselectTitle(item.title);
-        dispatch(selectPermission(item.id));
+        setSelectTitle(item.title);
+        dispatch(selectPermission(item.menuID));
     }
 
     return (
         <ul>
-            {permissionMenu.map((item, index) => (
+            {menuData?.map((item, index) => (
                 <li key={index.toString()}>
                     <a onClick={() => getPermission(item)}
                         className={selectTitle === item.title ? 'active' : ''}>

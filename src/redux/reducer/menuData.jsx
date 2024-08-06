@@ -1,6 +1,7 @@
 const menuData = [
     {
         menuID: 0,
+        title:'Home',
         menuDataParent: [
             {
                 id: 0,
@@ -36,6 +37,7 @@ const menuData = [
     },
     {
         menuID: 1,
+        title:'Visualization',
         menuDataParent: [
             {
                 id: 0,
@@ -66,6 +68,7 @@ const menuData = [
     },
     {
         menuID: 2,
+        title:'Organization',
         menuDataParent: [
             {
                 id: 0,
