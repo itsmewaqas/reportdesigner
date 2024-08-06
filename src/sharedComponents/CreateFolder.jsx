@@ -44,20 +44,17 @@ function CreateFolder({ folderCreate, setFolderCreate }) {
     });
 
     const CreateFolder = () => {
-        if (folderName == "" && folderColor == "") {
+        if (!folderName || !folderColor) {
             errorMesg();
-        }
-        else {
+        } else {
             const newFolder = {
                 folderName: folderName,
                 folderColor: folderColor
-            }
+            };
             setFormState([...formState, newFolder]);
             successMesg();
-            if (formState) {
-                setfolderColor('');
-                setfolderName('');
-            }
+            setfolderName('');
+            setfolderColor('');
         }
     }
 
