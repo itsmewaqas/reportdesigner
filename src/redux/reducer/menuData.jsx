@@ -41,8 +41,8 @@ const menuData = [
         menuDataParent: [
             {
                 id: 0,
-                menuTitle: 'Service 1',
-                menuLink: 'Service1',
+                menuTitle: 'Visualization',
+                menuLink: 'Visualization',
             },
             {
                 id: 1,
@@ -72,8 +72,8 @@ const menuData = [
         menuDataParent: [
             {
                 id: 0,
-                menuTitle: 'Organization 1',
-                menuLink: 'Organization1',
+                menuTitle: 'Organization',
+                menuLink: 'Organization',
             },
             {
                 id: 1,

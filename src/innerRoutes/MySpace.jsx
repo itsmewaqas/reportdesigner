@@ -20,8 +20,11 @@ import gridImg2 from '../assets/images/gridImg2.png';
 import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import { useNavigate } from "react-router-dom";
 
 function MySpace(props) {
+
+  let navigate = useNavigate();
 
   const [modeCtrl, setModeCtrl] = useState(false);
   const [folderCreate, setFolderCreate] = useState(false);
@@ -116,20 +119,21 @@ function MySpace(props) {
       checkboxSelection: true,
       cellRenderer: (row) => {
         const rowData = row.data;
-        return <a onClick={() => console.log(rowData)}
+        return <a onClick={() => navigate(`/FilterRoute`)}
           style={{ cursor: 'pointer', color: '#009DE1' }}>{rowData.reportName}</a>
       },
     },
     { field: "description", headerName: "Description" },
     { field: "folder", headerName: "Folder", cellRenderer: FolderRender },
     { field: "createdBy", headerName: "Created By", cellRenderer: AvatarRender },
-    { field: "location", headerName: "Location", 
+    {
+      field: "location", headerName: "Location",
       // tooltipComponentParams: { color: "#000" },
       // tooltipField: "location",
       tooltipValueGetter: (p) =>
         "" + p.value,
       headerTooltip: "",
-     },
+    },
     { field: "modifiedOn", headerName: "Modified On" }
   ]);
 
